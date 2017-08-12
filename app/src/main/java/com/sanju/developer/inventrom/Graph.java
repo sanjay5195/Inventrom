@@ -1,46 +1,25 @@
 package com.sanju.developer.inventrom;
 
-/**
- * Created by Sanju on 12-Aug-17.
- */
-
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.util.AttributeSet;
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
-public class Graph extends View {
+public class Graph extends AppCompatActivity {
 
-    public Graph(Context context) {
-        super(context);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_graph);
+        Button button=(Button)findViewById(R.id.reset);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Graph.this,MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
-    public Graph(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
-    }
-
-    public Graph(Context context, AttributeSet attrs) {
-        super(context, attrs);
-    }
-
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-
-        int w = getWidth() / 2;
-
-        Path path = new Path();
-        path.moveTo( w, 0);
-        path.lineTo( 2 * w , 0);
-        path.lineTo( 2 * w , w);
-        path.lineTo( w , 0);
-        path.close();
-
-        Paint p = new Paint();
-        p.setColor( Color.RED );
-
-        canvas.drawPath(path, p);
-    }
 }

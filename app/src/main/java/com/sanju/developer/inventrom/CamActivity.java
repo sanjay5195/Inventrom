@@ -98,7 +98,8 @@ public class CamActivity extends AppCompatActivity {
 
            // alertDialog.setTitle("Enter your Detail's ");
            // DialogViewDecorator.decorate(alertDialog, android.R.color.holo_red_light);
-            alertDialog.setTitle(Html.fromHtml("<font color='#00ff37'>Enter your Detail's</font>"));
+            alertDialog.setTitle(Html.fromHtml("<font color='#00ff37'>Enter your Detail's.</font>"));
+
             final EditText name = new EditText(CamActivity.this);
             final EditText age = new EditText(CamActivity.this);
             final EditText address = new EditText(CamActivity.this);
@@ -110,14 +111,14 @@ public class CamActivity extends AppCompatActivity {
             age.setInputType(InputType.TYPE_CLASS_NUMBER);
             gender.setInputType(InputType.TYPE_NUMBER_FLAG_SIGNED);
 
-            LinearLayout ll=new LinearLayout(getApplicationContext());
-            ll.setOrientation(LinearLayout.VERTICAL);                       //saving the detail in Linear layout
+            LinearLayout ll=new LinearLayout(getApplicationContext());          //saving the detail in Linear layout
+            ll.setOrientation(LinearLayout.VERTICAL);
             ll.addView(name);
             ll.addView(age);
             ll.addView(address);
             ll.addView(gender);
             alertDialog.setView(ll);
-            alertDialog.setIcon(R.drawable.invent1);
+            alertDialog.setIcon(R.drawable.bolt);
 
             alertDialog.setCancelable(false);
             alertDialog.setPositiveButton("Update",  new DialogInterface.OnClickListener() {        //click on update Button
@@ -155,7 +156,7 @@ public class CamActivity extends AppCompatActivity {
 
                     }
 
-                    Intent intent=new Intent(CamActivity.this,MainActivity.class);      //In the end go back to Minactivity
+                    Intent intent=new Intent(CamActivity.this,Graph.class);      //In the end go back to Minactivity
                     startActivity(intent);
                     //ACTION
                 }
