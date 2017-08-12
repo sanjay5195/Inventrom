@@ -31,7 +31,7 @@ public class Show extends Fragment {
      //   Log.d("Files", "Size: " + file.length);
         StringBuffer buffer = new StringBuffer();                   // string Buffer is used because of MUTABLE feature(changeable) in nature
         int count = 0;
-        for (int i = file.length-2; i >=0; i--) {
+        for (int i = file.length-1; i >=0; i--) {
             String.valueOf(count++);                                //indexing for files
             buffer.append(count);
             buffer.append(". ");
