@@ -13,58 +13,55 @@ import java.io.IOException;
 
 
 
-public class CameraView extends SurfaceView implements SurfaceHolder.Callback{
-    private SurfaceHolder mHolder;
-    private Camera mCamera;
+public class CameraView extends SurfaceView implements SurfaceHolder.Callback{         // imlements SurfaceHolder.callback
+    private SurfaceHolder hold;
+    private Camera cam;
     public CameraView(Context context, Camera camera){
         super(context);
 
-        mCamera = camera;
-     //   mCamera.setDisplayOrientation(90);
-        //get the holder and set this class as the callback, so we can get camera data here
-        mHolder = getHolder();
-        mHolder.addCallback(this);
-        mHolder.setType(SurfaceHolder.SURFACE_TYPE_NORMAL);
+        cam = camera;
+        cam.setDisplayOrientation(90);
+        hold = getHolder();                                                       // we can get camera data here
+        hold.addCallback(this);
+        hold.setType(SurfaceHolder.SURFACE_TYPE_NORMAL);
     }
 
     @Override
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
         try{
-            //when the surface is created, we can set the camera to draw images in this surfaceholder
-            mCamera.setPreviewDisplay(surfaceHolder);
-            mCamera.startPreview();
+                                                                         //when the surface is created, set the camera to draw images in this surface
+            cam.setPreviewDisplay(surfaceHolder);
+            cam.startPreview();
         } catch (IOException e) {
             Log.d("ERROR", "Camera error on surfaceCreated " + e.getMessage());
         }
     }
 
     @Override
-    public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i2, int i3) {
-        //before changing the application orientation, you need to stop the preview, rotate and then start it again
-        if(mHolder.getSurface() == null)//check if the surface is ready to receive camera data
+    public void surfaceChanged(SurfaceHolder surfaceHolder, int i1, int i2, int i3) {
+        if(hold.getSurface() == null)                                    // surface is ready to receive camera data
             return;
 
         try{
-            mCamera.stopPreview();
+            cam.stopPreview();
         } catch (Exception e){
-            //this will happen when you are trying the camera if it's not running
+                                                                         // when camera  it's not running
         }
 
-        //now, recreate the camera preview
+                                                                         //now, recreate the camera preview
         try{
-            mCamera.setPreviewDisplay(mHolder);
-            mCamera.startPreview();
+            cam.setPreviewDisplay(hold);
+            cam.startPreview();
         } catch (IOException e) {
-            Log.d("ERROR", "Camera error on surfaceChanged " + e.getMessage());
+            Log.d("ERROR", "Camera error on surfaceChanged " + e.getMessage());         //Testing
         }
     }
 
     @Override
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
-        //our app has only one screen, so we'll destroy the camera in the surface
-        //if you are unsing with more screens, please move this code your activity
-        mCamera.stopPreview();
-        mCamera.release();
+
+        cam.stopPreview();
+        cam.release();
     }
 }
 

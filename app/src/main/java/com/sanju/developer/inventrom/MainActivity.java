@@ -14,7 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {               // using Inbuilt Tab activity
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        // Create the adapter that will return a fragment for each of the three
+        // Create the adapter that will return a fragment for each of the two
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "App is Created by  sanjay Choudhary", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -104,10 +104,10 @@ public class MainActivity extends AppCompatActivity {
             {
                 case 0:
                 Action action=new Action();
-                return action;
+                return action;                              // return Action.class
                 case 1:
                     Show show=new Show();
-                    return show;
+                    return show;                             // return show.class
                 default:
                     return null;
             }
@@ -115,12 +115,12 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
+            // Show 2 total pages.
             return 2;
         }
 
         @Override
-        public CharSequence getPageTitle(int position) {
+        public CharSequence getPageTitle(int position) {            // Tab strings
             switch (position) {
                 case 0:
                     return "Action";

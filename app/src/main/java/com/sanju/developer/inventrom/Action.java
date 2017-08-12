@@ -29,7 +29,7 @@ public class Action extends Fragment{
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getContext(),CamActivity.class);
+                Intent intent=new Intent(getContext(),CamActivity.class);       // calling Camactivity
                 startActivity(intent);
             }
         });
